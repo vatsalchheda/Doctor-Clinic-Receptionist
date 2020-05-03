@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
 import Button from "@material-ui/core/Button";
 
 class PatientInfo extends Component {
@@ -10,14 +9,9 @@ class PatientInfo extends Component {
         <div className="PInfo">
           <p>{this.props.name}</p>
           <p>{this.props.dname}</p>
-          <p>
-            lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum
-            dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit
-            ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum
-            dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet
-          </p>
+          <p>{this.props.desc}</p>
           <br></br>
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="secondary" className="defred">
             Profile
           </Button>
         </div>

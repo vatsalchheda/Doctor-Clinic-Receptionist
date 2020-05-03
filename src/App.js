@@ -1,40 +1,27 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Nav from "./Components/nav";
-import LeftSideBar from "./Components/LeftSideBar";
-import MainBody from "./Components/MainBody";
-import RightSideBar from "./Components/RightSideBar";
+import Receptionist3 from "./receptionist3";
+import Receptionis1 from "./receptionis1";
+import Receptionist2 from "./receptionist2";
+import patientprofile from "./patientprofile";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-function App() {
-  return (
-    <div className="App">
-      <Container fluid className="ContainerPadding">
-        <Nav />
-        <Row>
-          <Col xs={12} md={3} className="Cellpadding">
-            <LeftSideBar />
-          </Col>
-          <Col xs={12} md={7} className="Cellpadding">
-            <br></br>
-            <MainBody />
-          </Col>
-          <Col xs={12} md={2} className="Cellpadding">
-            <RightSideBar
-              time="18:00"
-              date="24-03-20"
-              day="Tuesday"
-              queue="1"
-              name="Vatsal Chheda"
-              docname="Dr. Asthana"
-            />
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
+import "bootstrap/dist/js/bootstrap.bundle.min";
+class App extends React.Component {
+  render = () => {
+    return (
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Receptionis1} />
+            <Route exact path="/appoinment" component={Receptionist2} />
+            <Route exact path="/addpatient" component={Receptionist3} />
+            <Route exact path="/profile" component={patientprofile} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  };
 }
 
 export default App;
