@@ -6,16 +6,17 @@ import Button from "@material-ui/core/Button";
 export default class Schedule extends React.Component {
   state = {
     loading: true,
-    person: null,
+    person: null
   };
 
   async componentDidMount() {
     // const url = "http://127.0.0.1:8000/book-appointment/";
-    const url = "https://api.randomuser.me/";
-    const response = await fetch(url);
+    const url = "http://localhost:8000/api/list/testing/";
+    const response = await fetch(url)
     const data = await response.json();
-    this.setState({ person: data.results[0], loading: false });
-  }
+    console.log(data);
+    this.setState({ person: data, loading: false });
+  };
 
   render() {
     if (this.state.loading) {
@@ -25,24 +26,9 @@ export default class Schedule extends React.Component {
     if (!this.state.person) {
       return <div>didn't get a person</div>;
     }
-    const Therapists = [{ title: this.state.person.name.first }];
-    const Patients = [{ title: this.state.person.name.last }];
-    const Type = [{ title: "X-ray" }, { title: "ENT" }, { title: "General" }];
-
-    const Dates = [
-      { title: "25th March" },
-      { title: "26th March" },
-      { title: "27th March" },
-    ];
-
-    const Slots = [
-      { title: "5:30-6:30" },
-      { title: "6:30-7:30" },
-      { title: "7:30-8:30" },
-    ];
+    
     return (
       <div class="ScheduleContainer ">
-        <div>{this.state.person.name.first}</div>
         <div className="MainPara">
           <span className="span1">SCHEDULE APPOINTMENTS</span>
           <br></br>
@@ -52,8 +38,8 @@ export default class Schedule extends React.Component {
             <p>PATIENT:</p>
             <Autocomplete
               id="combo-box-demo"
-              options={Patients}
-              getOptionLabel={(option) => option.title}
+              options={this.state.person}
+              getOptionLabel={option => option.patient.toString()}
               style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Patient" variant="outlined" />
@@ -63,8 +49,8 @@ export default class Schedule extends React.Component {
             <p>THERAPIST:</p>
             <Autocomplete
               id="combo-box-demo"
-              options={Therapists}
-              getOptionLabel={(option) => option.title}
+              options={this.state.person}
+              getOptionLabel={option => option.doctor.toString()}
               style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Therapist" variant="outlined" />
@@ -75,8 +61,8 @@ export default class Schedule extends React.Component {
             <p>TYPE OF APPOINTMENT:</p>
             <Autocomplete
               id="combo-box-demo"
-              options={Type}
-              getOptionLabel={(option) => option.title}
+              options={this.state.person}
+              getOptionLabel={option => option.type.toString()}
               style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Type" variant="outlined" />
@@ -87,8 +73,8 @@ export default class Schedule extends React.Component {
               <p>DATE:</p>
               <Autocomplete
                 id="combo-box-demo"
-                options={Dates}
-                getOptionLabel={(option) => option.title}
+                options={this.state.person}
+                getOptionLabel={option => option.date.toString()}
                 style={{ width: 150 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Date" variant="outlined" />
@@ -99,8 +85,8 @@ export default class Schedule extends React.Component {
               <p>SLOT:</p>
               <Autocomplete
                 id="combo-box-demo"
-                options={Slots}
-                getOptionLabel={(option) => option.title}
+                options={this.state.person}
+                getOptionLabel={option => option.start_time.toString()}
                 style={{ width: 150 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Slot" variant="outlined" />
