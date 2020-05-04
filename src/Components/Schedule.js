@@ -6,27 +6,27 @@ import Button from "@material-ui/core/Button";
 export default class Schedule extends React.Component {
   state = {
     loading: true,
-    person: null
+    person: null,
   };
 
   async componentDidMount() {
     // const url = "http://127.0.0.1:8000/book-appointment/";
     const url = "http://localhost:8000/api/list/testing/";
-    const response = await fetch(url)
+    const response = await fetch(url);
     const data = await response.json();
     console.log(data);
     this.setState({ person: data, loading: false });
-  };
+  }
 
   render() {
-    if (this.state.loading) {
-      return <div>loading...</div>;
-    }
+    // if (this.state.loading) {
+    //   return <div>loading...</div>;
+    // }
 
-    if (!this.state.person) {
-      return <div>didn't get a person</div>;
-    }
-    
+    // if (!this.state.person) {
+    //   return <div>didn't get a person</div>;
+    // }
+
     return (
       <div class="ScheduleContainer ">
         <div className="MainPara">
@@ -39,7 +39,7 @@ export default class Schedule extends React.Component {
             <Autocomplete
               id="combo-box-demo"
               options={this.state.person}
-              getOptionLabel={option => option.patient.toString()}
+              getOptionLabel={(option) => option.patient.toString()}
               style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Patient" variant="outlined" />
@@ -50,7 +50,7 @@ export default class Schedule extends React.Component {
             <Autocomplete
               id="combo-box-demo"
               options={this.state.person}
-              getOptionLabel={option => option.doctor.toString()}
+              getOptionLabel={(option) => option.doctor.toString()}
               style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Therapist" variant="outlined" />
@@ -62,7 +62,7 @@ export default class Schedule extends React.Component {
             <Autocomplete
               id="combo-box-demo"
               options={this.state.person}
-              getOptionLabel={option => option.type.toString()}
+              getOptionLabel={(option) => option.type.toString()}
               style={{ width: 300 }}
               renderInput={(params) => (
                 <TextField {...params} label="Type" variant="outlined" />
@@ -74,7 +74,7 @@ export default class Schedule extends React.Component {
               <Autocomplete
                 id="combo-box-demo"
                 options={this.state.person}
-                getOptionLabel={option => option.date.toString()}
+                getOptionLabel={(option) => option.date.toString()}
                 style={{ width: 150 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Date" variant="outlined" />
@@ -86,7 +86,7 @@ export default class Schedule extends React.Component {
               <Autocomplete
                 id="combo-box-demo"
                 options={this.state.person}
-                getOptionLabel={option => option.start_time.toString()}
+                getOptionLabel={(option) => option.start_time.toString()}
                 style={{ width: 150 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Slot" variant="outlined" />

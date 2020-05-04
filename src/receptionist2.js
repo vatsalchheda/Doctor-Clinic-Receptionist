@@ -17,15 +17,21 @@ function Receptionist2() {
         <Nav />
         <Row>
           <Col xs={12} md={2} className="Cellpadding">
-            <LeftSideBar className1="defred"/>
+            <LeftSideBar className1="defred" />
           </Col>
-          <Col xs={12} md={4} className="Cellpadding">
-            <br></br>
-            <Requests />
-          </Col>
-          <Col xs={12} md={4} className="Cellpadding">
-            <br></br>
-            <Schedule />
+          <Col xs={12} md={8} className="Cellpadding">
+            <div id="div1">
+              <Row>
+                <Col xs={12} md={6} className="Cellpadding">
+                  <br></br>
+                  <Requests />
+                </Col>
+                <Col xs={12} md={6} className="Cellpadding">
+                  <br></br>
+                  <Schedule />
+                </Col>
+              </Row>
+            </div>
           </Col>
           <Col xs={12} md={2} className="Cellpadding">
             <RightSideBar
